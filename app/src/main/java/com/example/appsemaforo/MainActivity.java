@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnIniciar;
     TextView tvContador;
-    ImageView ivLed, ivLed2;
+    ImageView ivLedRojo1 , ivLedRojo2, ivLedAmarillo1, ivLedAmarillo2, ivLedVerde1, ivLedVerde2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,18 +34,30 @@ public class MainActivity extends AppCompatActivity {
 
         btnIniciar = findViewById(R.id.btnIniciar);
         tvContador = findViewById(R.id.tvContador);
-        ivLed = findViewById(R.id.ivLed);
-        ivLed2 = findViewById(R.id.ivLed2);
 
-        Drawable drawable = ivLed.getBackground();
-        GradientDrawable gradientDrawable = (GradientDrawable) drawable;
+        ivLedRojo1 = findViewById(R.id.ivLedRojo1);
+        ivLedRojo2 = findViewById(R.id.ivLedRojo2);
+        ivLedAmarillo1 = findViewById(R.id.ivLedAmarillo1);
+        ivLedAmarillo2 = findViewById(R.id.ivLedAmarillo2);
+        ivLedVerde1 = findViewById(R.id.ivLedVerde1);
+        ivLedVerde2 = findViewById(R.id.ivLedVerde2);
 
-        Drawable drawable2 = ivLed2.getBackground();
-        GradientDrawable gradientDrawable2 = (GradientDrawable) drawable2;
+        GradientDrawable drawableRojo1 = (GradientDrawable) ivLedRojo1.getBackground();
+        GradientDrawable drawableRojo2 = (GradientDrawable) ivLedRojo2.getBackground();
+
+        GradientDrawable drawableAmarillo1 = (GradientDrawable) ivLedAmarillo1.getBackground();
+        GradientDrawable drawableAmarillo2 = (GradientDrawable) ivLedAmarillo2.getBackground();
+
+        GradientDrawable drawableVerde1 = (GradientDrawable) ivLedVerde1.getBackground();
+        GradientDrawable drawableVerde2 = (GradientDrawable) ivLedVerde2.getBackground();
+
+
 
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                drawableRojo1.setColor(Color.parseColor("#FF0000"));
+                drawableRojo2.setColor(Color.parseColor("#FF0000"));
                 Thread thread = new Thread(new Runnable(){
                     int color = 1;
                     @Override
@@ -65,17 +77,24 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
+                            //000000
                             switch (color){
                                 case 1:
-                                    gradientDrawable.setColor(Color.parseColor("#F7FF00"));
+                                    drawableRojo1.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo1.setColor(Color.parseColor("#FFFF00"));
+                                    drawableVerde1.setColor(Color.parseColor("#787575"));
                                     color = 2;
                                     break;
                                 case 2:
-                                    gradientDrawable.setColor(Color.parseColor("#1EFF00"));
+                                    drawableRojo1.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo1.setColor(Color.parseColor("#787575"));
+                                    drawableVerde1.setColor(Color.parseColor("#0DFF00"));
                                     color = 3;
                                     break;
                                 case 3:
-                                    gradientDrawable.setColor(Color.parseColor("#FF0000"));
+                                    drawableRojo1.setColor(Color.parseColor("#FF0000"));
+                                    drawableAmarillo1.setColor(Color.parseColor("#787575"));
+                                    drawableVerde1.setColor(Color.parseColor("#787575"));
                                     color = 1;
                                     break;
                             }
@@ -103,17 +122,24 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
+                            //000000
                             switch (color){
                                 case 1:
-                                    gradientDrawable2.setColor(Color.parseColor("#F7FF00"));
+                                    drawableRojo2.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo2.setColor(Color.parseColor("#FFFF00"));
+                                    drawableVerde2.setColor(Color.parseColor("#787575"));
                                     color = 2;
                                     break;
                                 case 2:
-                                    gradientDrawable2.setColor(Color.parseColor("#1EFF00"));
+                                    drawableRojo2.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo2.setColor(Color.parseColor("#787575"));
+                                    drawableVerde2.setColor(Color.parseColor("#0DFF00"));
                                     color = 3;
                                     break;
                                 case 3:
-                                    gradientDrawable2.setColor(Color.parseColor("#FF0000"));
+                                    drawableRojo2.setColor(Color.parseColor("#FF0000"));
+                                    drawableAmarillo2.setColor(Color.parseColor("#787575"));
+                                    drawableVerde2.setColor(Color.parseColor("#787575"));
                                     color = 1;
                                     break;
                             }

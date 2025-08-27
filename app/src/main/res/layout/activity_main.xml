@@ -29,7 +29,19 @@
                 android:padding="20dp">
 
                 <ImageView
-                    android:id="@+id/ivLed"
+                    android:id="@+id/ivLedRojo1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/led" />
+                <ImageView
+                    android:id="@+id/ivLedAmarillo1"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/led" />
+                <ImageView
+                    android:id="@+id/ivLedVerde1"
+                    android:layout_marginTop="7dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/led" />
@@ -44,8 +56,20 @@
                 android:padding="20dp">
 
                 <ImageView
-                    android:id="@+id/ivLed2"
+                    android:id="@+id/ivLedRojo2"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/led" />
+                <ImageView
+                    android:id="@+id/ivLedAmarillo2"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/led" />
+                <ImageView
+                    android:id="@+id/ivLedVerde2"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/led" />
             </LinearLayout>
