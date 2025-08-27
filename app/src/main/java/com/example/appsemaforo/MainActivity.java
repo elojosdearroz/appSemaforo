@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawableRojo1.setColor(Color.parseColor("#FF0000"));
-                drawableRojo2.setColor(Color.parseColor("#FF0000"));
+                drawableVerde2.setColor(Color.parseColor("#0DFF00"));
                 Thread thread = new Thread(new Runnable(){
                     int color = 1;
                     @Override
@@ -92,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                                     color = 3;
                                     break;
                                 case 3:
+                                    drawableRojo1.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo1.setColor(Color.parseColor("#FFFF00"));
+                                    drawableVerde1.setColor(Color.parseColor("#787575"));
+                                    color = 4;
+                                    break;
+                                case 4:
                                     drawableRojo1.setColor(Color.parseColor("#FF0000"));
                                     drawableAmarillo1.setColor(Color.parseColor("#787575"));
                                     drawableVerde1.setColor(Color.parseColor("#787575"));
@@ -131,17 +137,24 @@ public class MainActivity extends AppCompatActivity {
                                     color = 2;
                                     break;
                                 case 2:
-                                    drawableRojo2.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo2.setColor(Color.parseColor("#787575"));
-                                    drawableVerde2.setColor(Color.parseColor("#0DFF00"));
-                                    color = 3;
-                                    break;
-                                case 3:
                                     drawableRojo2.setColor(Color.parseColor("#FF0000"));
                                     drawableAmarillo2.setColor(Color.parseColor("#787575"));
                                     drawableVerde2.setColor(Color.parseColor("#787575"));
+                                    color = 3;
+                                    break;
+                                case 3:
+                                    drawableRojo2.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo2.setColor(Color.parseColor("#FFFF00"));
+                                    drawableVerde2.setColor(Color.parseColor("#787575"));
+                                    color = 4;
+                                    break;
+                                case 4:
+                                    drawableRojo2.setColor(Color.parseColor("#787575"));
+                                    drawableAmarillo2.setColor(Color.parseColor("#787575"));
+                                    drawableVerde2.setColor(Color.parseColor("#0DFF00"));
                                     color = 1;
                                     break;
+
                             }
                         }
                     }
