@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Thread thread = new Thread(new Runnable(){
-                    boolean encendido = true;
+                    int color = 1;
                     @Override
                     public void run() {
                         while (true) {
-                            for (int i = 0; i <= 5; i++) {
+                            for (int i = 1; i <= 5; i++) {
                                 int dec = i;
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -61,23 +61,20 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            if (encendido) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        gradientDrawable.setColor(Color.parseColor("#9b9b9b"));
-                                    }
-                                });
+                            switch (color){
+                                case 1:
+                                    gradientDrawable.setColor(Color.parseColor("#F7FF00"));
+                                    color = 2;
+                                    break;
+                                case 2:
+                                    gradientDrawable.setColor(Color.parseColor("#1EFF00"));
+                                    color = 3;
+                                    break;
+                                case 3:
+                                    gradientDrawable.setColor(Color.parseColor("#FF0000"));
+                                    color = 1;
+                                    break;
                             }
-                            else {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        gradientDrawable.setColor(Color.parseColor("#FF0000"));
-                                    }
-                                });
-                            }
-                            encendido = !encendido;
                         }
                     }
                 });
