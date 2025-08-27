@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnIniciar;
     TextView tvContador;
-    ImageView ivLed;
+    ImageView ivLed, ivLed2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +35,13 @@ public class MainActivity extends AppCompatActivity {
         btnIniciar = findViewById(R.id.btnIniciar);
         tvContador = findViewById(R.id.tvContador);
         ivLed = findViewById(R.id.ivLed);
+        ivLed2 = findViewById(R.id.ivLed2);
 
         Drawable drawable = ivLed.getBackground();
         GradientDrawable gradientDrawable = (GradientDrawable) drawable;
+
+        Drawable drawable2 = ivLed2.getBackground();
+        GradientDrawable gradientDrawable2 = (GradientDrawable) drawable2;
 
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +83,44 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 thread.start();
+
+                Thread thread2 = new Thread(new Runnable(){
+                    int color = 1;
+                    @Override
+                    public void run() {
+                        while (true) {
+                            for (int i = 1; i <= 5; i++) {
+                                int dec = i;
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tvContador.setText("Contador: " + dec);
+                                    }
+                                });
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            switch (color){
+                                case 1:
+                                    gradientDrawable2.setColor(Color.parseColor("#F7FF00"));
+                                    color = 2;
+                                    break;
+                                case 2:
+                                    gradientDrawable2.setColor(Color.parseColor("#1EFF00"));
+                                    color = 3;
+                                    break;
+                                case 3:
+                                    gradientDrawable2.setColor(Color.parseColor("#FF0000"));
+                                    color = 1;
+                                    break;
+                            }
+                        }
+                    }
+                });
+                thread2.start();
             }
         });
     }
