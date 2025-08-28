@@ -56,111 +56,77 @@ public class MainActivity extends AppCompatActivity {
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawableRojo1.setColor(Color.parseColor("#FF0000"));
-                drawableVerde2.setColor(Color.parseColor("#0DFF00"));
-                Thread thread = new Thread(new Runnable(){
-                    int color = 1;
-                    @Override
-                    public void run() {
-                        while (true) {
-                            for (int i = 1; i <= 5; i++) {
-                                int dec = i;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        tvContador.setText("Contador: " + dec);
-                                    }
-                                });
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            //000000
-                            switch (color){
-                                case 1:
-                                    drawableRojo1.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo1.setColor(Color.parseColor("#FFFF00"));
-                                    drawableVerde1.setColor(Color.parseColor("#787575"));
-                                    color = 2;
-                                    break;
-                                case 2:
-                                    drawableRojo1.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo1.setColor(Color.parseColor("#787575"));
-                                    drawableVerde1.setColor(Color.parseColor("#0DFF00"));
-                                    color = 3;
-                                    break;
-                                case 3:
-                                    drawableRojo1.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo1.setColor(Color.parseColor("#FFFF00"));
-                                    drawableVerde1.setColor(Color.parseColor("#787575"));
-                                    color = 4;
-                                    break;
-                                case 4:
-                                    drawableRojo1.setColor(Color.parseColor("#FF0000"));
-                                    drawableAmarillo1.setColor(Color.parseColor("#787575"));
-                                    drawableVerde1.setColor(Color.parseColor("#787575"));
-                                    color = 1;
-                                    break;
-                            }
-                        }
-                    }
-                });
-                thread.start();
+                drawableRojo1.setColor(Color.parseColor("#FF0000")); //Rojo
+                drawableVerde2.setColor(Color.parseColor("#0DFF00")); //Verde
 
-                Thread thread2 = new Thread(new Runnable(){
-                    int color = 1;
-                    @Override
-                    public void run() {
-                        while (true) {
-                            for (int i = 1; i <= 5; i++) {
-                                int dec = i;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        tvContador.setText("Contador: " + dec);
-                                    }
-                                });
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            //000000
-                            switch (color){
-                                case 1:
-                                    drawableRojo2.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo2.setColor(Color.parseColor("#FFFF00"));
-                                    drawableVerde2.setColor(Color.parseColor("#787575"));
-                                    color = 2;
-                                    break;
-                                case 2:
-                                    drawableRojo2.setColor(Color.parseColor("#FF0000"));
-                                    drawableAmarillo2.setColor(Color.parseColor("#787575"));
-                                    drawableVerde2.setColor(Color.parseColor("#787575"));
-                                    color = 3;
-                                    break;
-                                case 3:
-                                    drawableRojo2.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo2.setColor(Color.parseColor("#FFFF00"));
-                                    drawableVerde2.setColor(Color.parseColor("#787575"));
-                                    color = 4;
-                                    break;
-                                case 4:
-                                    drawableRojo2.setColor(Color.parseColor("#787575"));
-                                    drawableAmarillo2.setColor(Color.parseColor("#787575"));
-                                    drawableVerde2.setColor(Color.parseColor("#0DFF00"));
-                                    color = 1;
-                                    break;
-
-                            }
-                        }
-                    }
-                });
-                thread2.start();
+                ejecutarContador(5);
+                ejecutarSemaforo(drawableRojo1, drawableAmarillo1, drawableVerde1, new int[]{2,3,2,1});
+                ejecutarSemaforo(drawableRojo2, drawableAmarillo2, drawableVerde2, new int[]{2,1,2,3});
             }
         });
+    }
+
+    private void ejecutarSemaforo(GradientDrawable  Rojo, GradientDrawable  Amarillo, GradientDrawable  Verde, int[] secuencia){
+        Thread thread = new Thread(new Runnable(){
+            int index = 0;
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    switch (secuencia[index]){
+                        case 1: //Encender Rojo
+                            Rojo.setColor(Color.parseColor("#FF0000"));
+                            Amarillo.setColor(Color.parseColor("#787575"));
+                            Verde.setColor(Color.parseColor("#787575"));
+                            break;
+                        case 2: //Encender Amarillo
+                            Rojo.setColor(Color.parseColor("#787575"));
+                            Amarillo.setColor(Color.parseColor("#FFFF00"));
+                            Verde.setColor(Color.parseColor("#787575"));
+                            break;
+                        case 3: //Encender Verde
+                            Rojo.setColor(Color.parseColor("#787575"));
+                            Amarillo.setColor(Color.parseColor("#787575"));
+                            Verde.setColor(Color.parseColor("#00FF00"));
+                            break;
+                    }
+
+
+                    index ++;
+                    if(index > secuencia.length-1){
+                        index = 0;
+                    }
+                }
+            }
+        });
+        thread.start();
+    }
+    private void ejecutarContador(int tiempo){
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                while (true){
+                    for(int i = 1; i <= tiempo; i++){
+                        int index = i;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvContador.setText("Contador: " + index);
+                            }
+                        });
+                        try{
+                            Thread.sleep(1000);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 }
